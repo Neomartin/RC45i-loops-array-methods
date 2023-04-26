@@ -22,7 +22,4 @@ for(let i = 1;  i <= 10000; i++) {
 }
 console.timeEnd('pow')
 
-
-
-console.log(`Salió del búcle`)
 // cálculo de descuento
