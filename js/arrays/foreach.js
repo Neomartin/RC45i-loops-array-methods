@@ -95,7 +95,7 @@ const paisesLatinoamerica = [
 const tableBodyHTML = document.getElementById("tableBody");
 
 
-paisesLatinoamerica.forEach((algo, index)  =>  {
+paisesLatinoamerica.forEach((algo, index) =>  {
 
     const posicion = String(index + 1).padStart(2, '0');
 
@@ -110,3 +110,4 @@ paisesLatinoamerica.forEach((algo, index)  =>  {
                                 </tr>`;
 
 })
+
