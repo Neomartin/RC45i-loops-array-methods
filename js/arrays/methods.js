@@ -119,43 +119,31 @@ function borrarPais(indice) {
   copiaArray.splice(indice, 1);
   console.log(copiaArray)
   renderizarTabla(copiaArray)
-
-  calcularPoblacionTotal(copiaArray)
 }
 
 
 function calcularPoblacionTotal(listaPaises) {
 
-  const acumuladoTotal = listaPaises.reduce( (acumulador, pais) => {
+  const acumuladoTotal = listaPaises.reduce( function(acumulador, item) {
 
-      acumulador += pais.habitantes;
+      acumulador += item.habitantes;
 
       return acumulador
-  }   
-  ,0 );
+  }, 0);
 
-  console.log(`acumuladoTotal`, acumuladoTotal)
+  const populationCell = document.getElementById('total');
+
+  populationCell.innerText = acumuladoTotal
+
 
 }
 
 calcularPoblacionTotal(paisesLatinoamerica)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function renderizarTabla(arrayDePaises) {
 
+  calcularPoblacionTotal(arrayDePaises);
+  
   tableBodyHTML.innerHTML = '';
 
   arrayDePaises.forEach((algo, index) =>  {
@@ -166,8 +154,8 @@ function renderizarTabla(arrayDePaises) {
                                     <th scope="row">${posicion}</th>
                                     <td>${algo.nombre}</td>
                                     <td>${algo.capital}</td>
-                                    <td>${algo.habitantes}</td>
                                     <td>${algo.ubicacion}</td>
+                                    <td class="text-center">${algo.habitantes}</td>
                                     <td>
                                       <button class="btn btn-danger px-1" onclick="borrarPais(${index})">
                                         <i class="fa-solid fa-trash"></i>
@@ -200,28 +188,3 @@ function filtrarPaises() {
 function pintarPaisesOriginales() {
   renderizarTabla(paisesLatinoamerica)
 }
-
-
-
-// renderizarTabla(paisesFiltrados)
-
-
-
-// const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 134, 137];
-
-// const pares = numeros.filter(function(value) {
-
-//   if(value % 2 === 0) {
-
-//     console.log(`${value} es par`);
-//     return true
-
-//   } else {
-
-//     console.log(`${value} es impar`)
-//     return false
-//   }
-
-// })
-
-// console.log('PARES', pares)
