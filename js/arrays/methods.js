@@ -95,7 +95,9 @@ const paisesLatinoamerica = [
 const copiaArray = structuredClone(paisesLatinoamerica);
 
 const tableBodyHTML = document.getElementById("tableBody");
+const contriesForm = document.getElementById('countries-form');
 
+console.log(contriesForm)
 
 
 function aplicarFiltroNombre(evtDesdeHTML) {
