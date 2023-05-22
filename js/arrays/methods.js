@@ -4,12 +4,15 @@ const paisesLatinoamerica = [
       ubicacion: "Sur de Sudamérica",
       habitantes: 45000000,
       capital: "Buenos Aires",
+      imagen: 'https://upload.wikimedia.org/wikipedia/commons/1/1a/Flag_of_Argentina.svg',
+      continente: 'America'
     },
     {
       nombre: "Bolivia",
       ubicacion: "Centro de Sudamérica",
       habitantes: 11000000,
       capital: "La Paz",
+      imagen: 'https://flags-world.com/wp-content/uploads/2021/01/flag-of-bolivia_1.png'
     },
     {
       nombre: "Brasil",
@@ -34,6 +37,7 @@ const paisesLatinoamerica = [
       ubicacion: "Centroamérica",
       habitantes: 5100000,
       capital: "San José",
+      continente: 'America'
     },
     {
       nombre: "Cuba",
@@ -93,12 +97,41 @@ const paisesLatinoamerica = [
 ];
 
 const copiaArray = structuredClone(paisesLatinoamerica);
-
 const tableBodyHTML = document.getElementById("tableBody");
-const contriesForm = document.getElementById('countries-form');
+const countriesForm = document.getElementById('countries-form');
 
-console.log(contriesForm)
 
+function renderizarTabla(arrayDePaises) {
+
+  calcularPoblacionTotal(arrayDePaises);
+  tableBodyHTML.innerHTML = '';
+  arrayDePaises.forEach((pais, index) =>  {
+
+    const posicion = String(index + 1).padStart(2, '0');
+    const paisImagen = pais.imagen ? pais.imagen : `/assets/images/default.webp`;
+
+    tableBodyHTML.innerHTML += `<tr>
+                                    <td>
+                                      <img class="pais-imagen" src="${paisImagen}" alt="Bandera del pais ${pais.nombre}">
+                                    </td>
+                                    <th scope="row">${posicion}</th>
+                                    <td>
+                                      ${pais.nombre}
+                                      <div>
+                                        <small class="fst-italic">${pais.continente ? pais.continente : ''}</small>
+                                      </div>
+                                    </td>
+                                    <td>${pais.capital}</td>
+                                    <td>${pais.ubicacion}</td>
+                                    <td class="text-center">${pais.habitantes}</td>
+                                    <td>
+                                      <button class="btn btn-danger px-1" onclick="borrarPais(${index})">
+                                        <i class="fa-solid fa-trash"></i>
+                                      </button>
+                                    </td>
+                                </tr>`;
+    })
+}
 
 function aplicarFiltroNombre(evtDesdeHTML) {
 
@@ -123,7 +156,6 @@ function borrarPais(indice) {
   renderizarTabla(copiaArray)
 }
 
-
 function calcularPoblacionTotal(listaPaises) {
 
   const acumuladoTotal = listaPaises.reduce( function(acumulador, item) {
@@ -139,35 +171,6 @@ function calcularPoblacionTotal(listaPaises) {
 
 
 }
-
-calcularPoblacionTotal(paisesLatinoamerica)
-
-function renderizarTabla(arrayDePaises) {
-
-  calcularPoblacionTotal(arrayDePaises);
-  
-  tableBodyHTML.innerHTML = '';
-
-  arrayDePaises.forEach((algo, index) =>  {
-
-    const posicion = String(index + 1).padStart(2, '0');
-
-    tableBodyHTML.innerHTML += `<tr>
-                                    <th scope="row">${posicion}</th>
-                                    <td>${algo.nombre}</td>
-                                    <td>${algo.capital}</td>
-                                    <td>${algo.ubicacion}</td>
-                                    <td class="text-center">${algo.habitantes}</td>
-                                    <td>
-                                      <button class="btn btn-danger px-1" onclick="borrarPais(${index})">
-                                        <i class="fa-solid fa-trash"></i>
-                                      </button>
-                                    </td>
-                                </tr>`;
-    })
-}
-
-renderizarTabla(paisesLatinoamerica);
 
 function filtrarPaises() {
 
@@ -190,3 +193,37 @@ function filtrarPaises() {
 function pintarPaisesOriginales() {
   renderizarTabla(paisesLatinoamerica)
 }
+
+countriesForm.addEventListener('submit', function(evt) {
+  //Prevenir el comportamiento por defecto del evento onsubmit de recargar la página
+  evt.preventDefault();
+  const el = evt.target.elements
+
+  const nuevoPais = {
+    nombre: el.nombre.value,
+    ubicacion: el.ubicacion.value,
+    habitantes: el.habitantes.valueAsNumber,
+    capital: el.capital.value,
+    imagen: el.imagen.value,
+    continente: el.continente.value,
+    active: el.active.checked
+  }
+
+  // const formData = new FormData(evt.target);
+  // const nuevoPais = Object.fromEntries(formData)
+  // nuevoPais.active = nuevoPais.active  ? true : false;
+  // nuevoPais.habitantes = nuevoPais.habitantes + 666666
+
+  console.log(nuevoPais);
+
+  paisesLatinoamerica.push(nuevoPais)
+
+  renderizarTabla(paisesLatinoamerica)
+
+  evt.target.reset()
+  el.nombre.focus()
+})
+
+
+// calcularPoblacionTotal(paisesLatinoamerica)
+renderizarTabla(paisesLatinoamerica);

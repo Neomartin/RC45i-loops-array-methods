@@ -49,20 +49,36 @@
               <div class="row">
                 <div class="col-6">
                   <div class="mb-3">
-                    <label for="ubicacionID" class="form-label">Ubicacion</label>
-                    <input type="text" name="ubicacion" class="form-control" id="ubicacionID" placeholder="Sur de la Antartida">
+                    <label for="ubicacionID" class="" class="form-label">Ubicacion</label>
+                    <input type="text" value="Dinamarca ubicacion" name="ubicacion" class="form-control" id="ubicacionID" placeholder="Sur de la Antartida">
                   </div>
                 </div>
                 <div class="col-6">
                   <div class="mb-3">
                     <label for="habitantesID" class="form-label">Habitantes</label>
-                    <input name="habitantes" type="number" min="0" class="form-control" id="habitantesID" placeholder="Dinamarca">
+                    <input name="habitantes" value="1000000" type="number" min="0" class="form-control" id="habitantesID" placeholder="Dinamarca">
                   </div>
                 </div>
-                <!-- <div class="mb-3">
-                  <label for="nombre" class="form-label">Nombre Pais</label>
-                  <input type="text" class="form-control" id="nombre" placeholder="Dinamarca">
-                </div> -->
+                <div class="mb-3">
+                  <label for="imageID" class="form-label">Url de la bandera</label>
+                  <input type="url" value="https://www.banderas-mundo.es/data/flags/w1600/dk.png" name="imagen" class="form-control" id="imageID" required placeholder="https://flags-world.com/uploads/01/flag-bolivia.png">
+                </div>
+                <div class="mb-3 col-6">
+                  <select name="continente" required class="form-select" aria-label="Continente">
+                    <option></option>
+                    <option value="africa">Continente Africa</option>
+                    <option value="america" selected>Continente America</option>
+                    <option value="asia">Continente Asia</option>
+                    <option value="europe">Continente Europa</option>
+                    <option value="oceania">Continente Oceania</option>
+                  </select>
+                </div>
+                <div class="mb-3 col-6 form-check">
+                  <input type="checkbox" class="form-check-input" name="active">
+                  <label class="form-check-label" for="flexCheckDefault">
+                    Activo
+                  </label>
+                </div>
                 <div class="mb-3">
                   <button class="btn btn-info" type="submit">Cargar pais</button>
                 </div>
@@ -75,6 +91,7 @@
           <table class="table table-striped table-primary m-3">
             <thead>
               <tr>
+                <th scope="col">Bandera</th>
                 <th scope="col">#</th>
                 <th scope="col">Nombre</th>
                 <th scope="col">Capital</th>
