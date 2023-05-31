@@ -14,13 +14,19 @@
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <main class="container-md">
+    <main class="container-fluid">
         <h1>PAISES LATINOAMERICANOS</h1>
       <div class="row">
         <div class="col-12 col-lg-6">
           <div class="p-3 mb-3 border border-primary">
             <button class="btn btn-success" onclick="pintarPaisesOriginales()">
               TODOS LOS PAISES
+            </button>
+            <button class="btn btn-primary" onclick="ordenarPaises()">
+              Ordenar ⬇️
+            </button>
+            <button class="btn btn-primary" onclick="ordenarPaises(true)">
+              Ordenar ⬆️
             </button>
             <div class="my-3">
   
@@ -50,24 +56,24 @@
                 <div class="col-6">
                   <div class="mb-3">
                     <label for="ubicacionID" class="" class="form-label">Ubicacion</label>
-                    <input type="text" value="Dinamarca ubicacion" name="ubicacion" class="form-control" id="ubicacionID" placeholder="Sur de la Antartida">
+                    <input type="text" name="ubicacion" class="form-control" id="ubicacionID" placeholder="Sur de la Antartida">
                   </div>
                 </div>
                 <div class="col-6">
                   <div class="mb-3">
                     <label for="habitantesID" class="form-label">Habitantes</label>
-                    <input name="habitantes" value="1000000" type="number" min="0" class="form-control" id="habitantesID" placeholder="Dinamarca">
+                    <input name="habitantes" type="number" min="0" class="form-control" id="habitantesID" placeholder="Dinamarca">
                   </div>
                 </div>
                 <div class="mb-3">
                   <label for="imageID" class="form-label">Url de la bandera</label>
-                  <input type="url" value="https://www.banderas-mundo.es/data/flags/w1600/dk.png" name="imagen" class="form-control" id="imageID" required placeholder="https://flags-world.com/uploads/01/flag-bolivia.png">
+                  <input type="url" name="imagen" class="form-control" id="imageID" placeholder="https://flags-world.com/uploads/01/flag-bolivia.png">
                 </div>
                 <div class="mb-3 col-6">
                   <select name="continente" required class="form-select" aria-label="Continente">
-                    <option></option>
+                    <option selected></option>
                     <option value="africa">Continente Africa</option>
-                    <option value="america" selected>Continente America</option>
+                    <option value="america" >Continente America</option>
                     <option value="asia">Continente Asia</option>
                     <option value="europe">Continente Europa</option>
                     <option value="oceania">Continente Oceania</option>
@@ -80,15 +86,15 @@
                   </label>
                 </div>
                 <div class="mb-3">
-                  <button class="btn btn-info" type="submit">Cargar pais</button>
+                  <button class="btn btn-primary" type="submit" id="submit-btn">Cargar pais</button>
                 </div>
               </div>
             </form>
             
           </div>
         </div>
-        <div class="col-12 col-lg-6">
-          <table class="table table-striped table-primary m-3">
+        <div class="col-12 col-lg-6 p-0 px-xl-2">
+          <table class="table table-striped table-primary my-3 my-lg-0">
             <thead>
               <tr>
                 <th scope="col">Bandera</th>
@@ -108,7 +114,7 @@
             <tfoot>
               <td colspan="4" class="text-end">TOTAL:</td>
               <td class="fw-bold fs-5 text-center" id="total"></td>
-              <td colspan="1"></td>
+              <td colspan="2"></td>
             </tfoot>
           </table>
         </div>
@@ -118,6 +124,11 @@
         
     </main>
 
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <script src="/js/arrays/utils.js"></script>
 
     <script src="/js/arrays/methods.js"></script>
+
+
 </body>
